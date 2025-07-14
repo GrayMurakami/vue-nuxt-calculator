@@ -30,12 +30,9 @@ npm run dev
 Visit http://localhost:3000 in your browser.
 ```
 
-## Production
-Build for production:
+## 🏗️ Production
+Build for production on Netlify:
 
 ```bash
 npm run build
-```
-
-## License
-MIT
+npm run preview

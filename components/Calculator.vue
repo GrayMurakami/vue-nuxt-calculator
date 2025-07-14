@@ -18,10 +18,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 import { useClipboard } from '@vueuse/core'
 import CalcBtn from '~/components/CalcBtn.vue'
 
-const maxLength = 9
+
+const maxLength = 7
 const firstValue = ref('0')
 const secondValue = ref('')
 const operator = ref('')
@@ -131,6 +133,56 @@ function toggleSign() {
   if (target.value === '0' || target.value === '') return
   if (target.value.startsWith('-')) target.value = target.value.slice(1)
   else target.value = '-' + target.value
+}
+
+// keyboard tapping logic
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeydown)
+})
+
+function handleKeydown(e) {
+  // Разрешённые клавиши (цифры)
+  if (/^[0-9]$/.test(e.key)) {
+    inputDigit(e.key)
+    e.preventDefault()
+    return
+  }
+  // Точка
+  if (e.key === '.' || e.key === ',') {
+    inputDigit('.')
+    e.preventDefault()
+    return
+  }
+  // Операторы
+  if (['+', '-', '*', '/'].includes(e.key)) {
+    let op = e.key === '*' ? '×' : (e.key === '/' ? '÷' : e.key)
+    setOperator(op)
+    e.preventDefault()
+    return
+  }
+  // Enter / = (равно)
+  if (e.key === 'Enter' || e.key === '=') {
+    calculateResult()
+    e.preventDefault()
+    return
+  }
+  // Backspace
+  if (e.key === 'Backspace') {
+    deleteLast()
+    e.preventDefault()
+    return
+  }
+  // Escape (C)
+  if (e.key === 'Escape') {
+    clearAll()
+    e.preventDefault()
+    return
+  }
 }
 </script>
 

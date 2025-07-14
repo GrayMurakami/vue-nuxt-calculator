@@ -1,4 +1,3 @@
-// plugins/tilt.js
 export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.vueApp.directive('tilt', {
     mounted(el) {

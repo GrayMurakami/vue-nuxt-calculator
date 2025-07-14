@@ -1,56 +1,44 @@
-3D Calculator (Nuxt 3 + Vue 3)
+# 3D Calculator (Nuxt 3 + Vue 3)
 
 ![3D Calculator Preview](./screenshot.jpg)
 
-Modern 3D calculator app built on Nuxt 3.
+A modern 3D calculator app built with Nuxt 3 & Vue 3.  
 Features animated tilt, responsive design, clipboard copy, and a clean dark UI.
 
-🚀 Live Demo
-See it on Netlify <!-- поменяй на актуальное -->
+## 🚀 Live Demo
 
-Features
-3D Tilt Animation: Calculator rotates as you move the mouse.
+[View Online (Netlify)](https://your-netlify-link)
 
-Calculator Functions: +, −, ×, ÷, √, plus/minus, backspace, clear, decimal point.
+## 🛠️ Features
 
-Copy to Clipboard: One-click result copying.
+- **3D Tilt Animation** — Calculator visually responds to mouse movement.
+- **Standard Operations** — Addition, subtraction, multiplication, division, square root, plus/minus, backspace, clear, decimal point.
+- **Copy Result** — Copy the result to clipboard with one click (📋).
+- **Custom Design** — Dark theme, colored buttons, animated hover effects.
+- **Responsive Layout** — Works great on both desktop and mobile.
+- **Input Limitations** — Prevents overflow, handles invalid input, and protects against errors.
+- **Built with Nuxt 3 + Vue 3** — Uses `<script setup>`, Composition API, and Nuxt SSR for a modern codebase.
 
-Responsive: Desktop and mobile friendly.
+## 🖥️ How to Run Locally
 
-Modern Codebase: Vue 3, <script setup>, SCSS modules, Nuxt SSR.
-
-Setup
-Install dependencies:
-
-bash
-Копировать
-Редактировать
+```bash
+git clone https://github.com/GrayMurakami/3d-calculator-nuxt.git
+cd 3d-calculator-nuxt
 npm install
-# or
-yarn install
-# or
-pnpm install
-Development Server
-Run local dev server:
-
-bash
-Копировать
-Редактировать
+npm run dev
 npm run dev
 Visit http://localhost:3000 in your browser.
 
-Production
+## Production
 Build for production:
 
-bash
-Копировать
-Редактировать
+```bash
 npm run build
 Preview production build:
 
-bash
-Копировать
-Редактировать
+```bash
 npm run preview
-License
+
+
+## License
 MIT

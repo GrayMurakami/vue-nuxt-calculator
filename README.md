@@ -28,17 +28,14 @@ npm install
 npm run dev
 npm run dev
 Visit http://localhost:3000 in your browser.
+```
 
 ## Production
 Build for production:
 
 ```bash
 npm run build
-Preview production build:
-
-```bash
-npm run preview
-
+```
 
 ## License
 MIT

@@ -31,27 +31,11 @@ const isSecondValueInput = ref(false)
 const justCalculated = ref(false) // <-- это флаг!
 const { copy: copyToClipboard } = useClipboard()
 
-const formatDisplay = (val) => {
-  let str = String(val)
-  if (str === 'Error') return str
-  if (!str.includes('e')) {
-    // Обычное число — обрезаем
-    return str.length > maxLength ? str.slice(0, maxLength) : str
-  }
-  // Экспоненциальная запись — красиво сокращаем
-  const [mantissa, exp] = str.split('e')
-  let shortMantissa = mantissa.slice(0, Math.max(5, maxLength - exp.length - 2))
-  return ${shortMantissa}e${exp}
-}
-  
 const displayValue = computed(() => {
-  let val
   if (isSecondValueInput.value) {
-    val = secondValue.value === '' ? firstValue.value || '0' : secondValue.value
-  } else {
-    val = firstValue.value || '0'
+    return secondValue.value === '' ? firstValue.value || '0' : secondValue.value
   }
-  return formatDisplay(val)
+  return firstValue.value || '0'
 })
 
 // --- Кнопки

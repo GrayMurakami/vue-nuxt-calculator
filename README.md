@@ -22,7 +22,7 @@ Features animated tilt, responsive design, clipboard copy, and a clean dark UI.
 ## 🖥️ How to Run Locally
 
 ```bash
-git clone https://github.com/GrayMurakami/3d-calculator-nuxt.git
+git clone https://github.com/GrayMurakami/vue-nuxt-calculator.git
 cd 3d-calculator-nuxt
 npm install
 npm run dev

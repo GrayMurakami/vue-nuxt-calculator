@@ -7,7 +7,7 @@ Features animated tilt, responsive design, clipboard copy, and a clean dark UI.
 
 ## 🚀 Live Demo
 
-[View Online (Netlify)](https://your-netlify-link)
+[View Online (Netlify)](https://vuenuxt-calc-bygray.netlify.app/)
 
 ## 🛠️ Features
 

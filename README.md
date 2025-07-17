@@ -7,7 +7,7 @@ Features animated tilt, responsive design, clipboard copy, and a clean dark UI.
 
 ## 🚀 Live Demo
 
-[View Online (Netlify)](https://vuenuxt-calc-bygray.netlify.app/)
+[View Online (Netlify)](https://calculator-bygray.netlify.app/)
 
 ## 🛠️ Features
 
@@ -27,8 +27,9 @@ cd 3d-calculator-nuxt
 npm install
 npm run dev
 npm run dev
-Visit http://localhost:3000 in your browser.
 ```
+Visit http://localhost:3000 in your browser.
+
 
 ## 🏗️ Production
 Build for production on Netlify:

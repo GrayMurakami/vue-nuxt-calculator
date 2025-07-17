@@ -5,31 +5,46 @@
       <button @click="copyToClipboard(displayValue)" class="copy-btn" title="Copy">📋</button>
     </div>
     <div class="buttons">
-      <CalcBtn
-        v-for="btn in buttons"
-        :key="btn.label"
-        :label="btn.label"
-        @click="onBtnClick"
-      />
+      <!-- 1 ряд -->
+      <CalculatorButton label="C" @click="clearAll" />
+      <CalculatorButton label="⌫" @click="deleteLast" />
+      <CalculatorButton label="√" @click="handleSqrt" />
+      <CalculatorButton label="+" @click="setOperator('+')" />
+      <!-- 2 ряд -->
+      <CalculatorButton label="7" @click="inputDigit('7')" />
+      <CalculatorButton label="8" @click="inputDigit('8')" />
+      <CalculatorButton label="9" @click="inputDigit('9')" />
+      <CalculatorButton label="-" @click="setOperator('-')" />
+      <!-- 3 ряд -->
+      <CalculatorButton label="4" @click="inputDigit('4')" />
+      <CalculatorButton label="5" @click="inputDigit('5')" />
+      <CalculatorButton label="6" @click="inputDigit('6')" />
+      <CalculatorButton label="×" @click="setOperator('×')" />
+      <!-- 4 ряд -->
+      <CalculatorButton label="1" @click="inputDigit('1')" />
+      <CalculatorButton label="2" @click="inputDigit('2')" />
+      <CalculatorButton label="3" @click="inputDigit('3')" />
+      <CalculatorButton label="÷" @click="setOperator('÷')" />
+      <!-- 5 ряд -->
+      <CalculatorButton label="+/-" @click="toggleSign" />
+      <CalculatorButton label="0" @click="inputDigit('0')" />
+      <CalculatorButton label="." @click="inputDigit('.')" />
+      <CalculatorButton label="=" @click="calculateResult" />
     </div>
     <b><p class="author">&copy; 2025 GraY</p></b>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { onMounted, onBeforeUnmount } from 'vue'
-import { useClipboard } from '@vueuse/core'
-import CalcBtn from '~/components/CalcBtn.vue'
+import { useClipboard, useEventListener } from '@vueuse/core'
 
-
-const maxLength = 7
-const firstValue = ref('0')
-const secondValue = ref('')
-const operator = ref('')
-const isSecondValueInput = ref(false)
-const justCalculated = ref(false) // <-- это флаг!
-const { copy: copyToClipboard } = useClipboard()
+const maxLength = 7;
+const firstValue = ref('0');
+const secondValue = ref('');
+const operator = ref('');
+const isSecondValueInput = ref(false);
+const justCalculated = ref(false); // <-- флаг!
+const { copy: copyToClipboard } = useClipboard();
 
 const displayValue = computed(() => {
   if (isSecondValueInput.value) {
@@ -38,28 +53,7 @@ const displayValue = computed(() => {
   return firstValue.value || '0'
 })
 
-// --- Кнопки
-const buttons = [
-  { label: 'C' }, { label: '⌫' }, { label: '√' }, { label: '+' },
-  { label: '7' }, { label: '8' }, { label: '9' }, { label: '-' },
-  { label: '4' }, { label: '5' }, { label: '6' }, { label: '×' },
-  { label: '1' }, { label: '2' }, { label: '3' }, { label: '÷' },
-  { label: '+/-' }, { label: '0' }, { label: '.' }, { label: '=' }
-]
-
-// --- Обработка клика по кнопке
-function onBtnClick(label) {
-  if (!isNaN(Number(label))) return inputDigit(label)
-  if (label === '.')         return inputDigit('.')
-  if (label === '+/-')       return toggleSign()
-  if (label === 'C')         return clearAll()
-  if (label === '⌫')         return deleteLast()
-  if (label === '√')         return handleSqrt()
-  if (['+', '-', '×', '÷'].includes(label)) return setOperator(label)
-  if (label === '=')         return calculateResult()
-}
-
-// --- Логика калькулятора (аналогично твоей)
+// --- Логика калькулятора
 function inputDigit(digit) {
   // Если только что был результат, начать новое число
   if (justCalculated.value && !isSecondValueInput.value) {
@@ -96,11 +90,11 @@ function calculateResult() {
   let resultStr = (result === 'Error') ? 'Error' : +parseFloat(result).toFixed(8)
   resultStr = String(resultStr)
   if (resultStr.length > maxLength) resultStr = (+resultStr).toExponential(4)
-  firstValue.value = resultStr
-  secondValue.value = ''
-  operator.value = ''
-  isSecondValueInput.value = false
-  justCalculated.value = true // <<< !
+  firstValue.value = resultStr;
+  secondValue.value = '';
+  operator.value = '';
+  isSecondValueInput.value = false;
+  justCalculated.value = true;
 }
 
 function clearAll() {
@@ -136,14 +130,7 @@ function toggleSign() {
 }
 
 // keyboard tapping logic
-
-onMounted(() => {
-  window.addEventListener('keydown', handleKeydown)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeydown)
-})
+useEventListener(window, 'keydown', handleKeydown);
 
 function handleKeydown(e) {
   // Разрешённые клавиши (цифры)
@@ -154,15 +141,15 @@ function handleKeydown(e) {
   }
   // Точка
   if (e.key === '.' || e.key === ',') {
-    inputDigit('.')
-    e.preventDefault()
+    inputDigit('.');
+    e.preventDefault();
     return
   }
   // Операторы
   if (['+', '-', '*', '/'].includes(e.key)) {
     let op = e.key === '*' ? '×' : (e.key === '/' ? '÷' : e.key)
-    setOperator(op)
-    e.preventDefault()
+    setOperator(op);
+    e.preventDefault();
     return
   }
   // Enter / = (равно)
@@ -186,7 +173,7 @@ function handleKeydown(e) {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .calc {
   margin: 50px auto;
   width: 300px;

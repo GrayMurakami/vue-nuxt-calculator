@@ -1,23 +1,23 @@
-<script setup>
-import { computed } from 'vue'
-const props = defineProps(['label'])
-
-const blue   = new Set(['+', '-', '×', '÷', '=']) // все дефисы — только обычные!
-const orange = new Set(['C', '⌫', '√', '+/-', '.']) // только '+/-'
-
-const classes = computed(() =>
-  blue.has(props.label)   ? 'bg-blue'   :
-  orange.has(props.label) ? 'bg-orange' : ''
-)
-</script>
-
 <template>
-  <button class="btn" :class="classes" @click="$emit('click', props.label)">
-    {{ label }}
+  <button class="btn" :class="classes">
+    {{ props.label }}
   </button>
 </template>
 
-<style scoped lang="scss">
+<script setup>
+const props = defineProps(['label']);
+
+const blue   = new Set(['+', '-', '×', '÷', '=']);
+const orange = new Set(['C', '⌫', '√', '+/-', '.']);
+
+const classes = computed(() =>
+  blue.has(props.label)   ? 'bg-blue'
+  : orange.has(props.label) ? 'bg-orange'
+  : ''
+)
+</script>
+
+<style scoped>
 .btn {
   color: aliceblue;
   width: 50px;

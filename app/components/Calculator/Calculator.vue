@@ -9,22 +9,22 @@
       <CalculatorButton label="C" @click="clearAll" />
       <CalculatorButton label="⌫" @click="deleteLast" />
       <CalculatorButton label="√" @click="handleSqrt" />
-      <CalculatorButton label="+" @click="setOperator('+')" />
+      <CalculatorButton label="÷" @click="setOperator('÷')" />
       <!-- 2 ряд -->
       <CalculatorButton label="7" @click="inputDigit('7')" />
       <CalculatorButton label="8" @click="inputDigit('8')" />
       <CalculatorButton label="9" @click="inputDigit('9')" />
-      <CalculatorButton label="-" @click="setOperator('-')" />
+      <CalculatorButton label="×" @click="setOperator('×')" />
       <!-- 3 ряд -->
       <CalculatorButton label="4" @click="inputDigit('4')" />
       <CalculatorButton label="5" @click="inputDigit('5')" />
       <CalculatorButton label="6" @click="inputDigit('6')" />
-      <CalculatorButton label="×" @click="setOperator('×')" />
+      <CalculatorButton label="-" @click="setOperator('-')" />
       <!-- 4 ряд -->
       <CalculatorButton label="1" @click="inputDigit('1')" />
       <CalculatorButton label="2" @click="inputDigit('2')" />
       <CalculatorButton label="3" @click="inputDigit('3')" />
-      <CalculatorButton label="÷" @click="setOperator('÷')" />
+      <CalculatorButton label="+" @click="setOperator('+')" />
       <!-- 5 ряд -->
       <CalculatorButton label="+/-" @click="toggleSign" />
       <CalculatorButton label="0" @click="inputDigit('0')" />

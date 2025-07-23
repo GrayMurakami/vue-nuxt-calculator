@@ -26,7 +26,6 @@ git clone https://github.com/GrayMurakami/vue-nuxt-calculator.git
 cd 3d-calculator-nuxt
 npm install
 npm run dev
-npm run dev
 ```
 Visit http://localhost:3000 in your browser.
 
